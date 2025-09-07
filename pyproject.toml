@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pytest-playground"
+version = "0.1.0"
+description = "A comprehensive pytest learning project"
+requires-python = ">=3.7"
+dependencies = [
+    "pytest>=7.0.0",
+    "pytest-repeat>=0.9.1",
+    "pytest-mock>=3.7.0",
+    "pytest-cov>=4.0.0",
+    "pytest-benchmark>=4.0.0",
+    "pytest-xdist>=2.5.0",
+    "pytest-html>=3.1.0",
+    "pytest-json-report>=1.5.0",
+    "pytest-asyncio>=0.21.0",
+    "requests>=2.28.0",
+    "coverage>=6.0.0",
+    "mock>=4.0.0"
+]
+
+[tool.pytest.ini_options]
+markers = [
+    "smoke: marks tests as smoke tests (quick tests for basic functionality)",
+    "slow: marks tests as slow running tests",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests"
+]
+testpaths = ["tests"]
+python_files = ["test-*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+pythonpath = ["."]
+addopts = ["-v", "--tb=short", "--import-mode=importlib"]

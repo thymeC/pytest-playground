@@ -1,0 +1,23 @@
+# Core testing framework
+pytest>=7.0.0
+
+# Pytest plugins for enhanced functionality
+pytest-repeat>=0.9.1
+pytest-mock>=3.10.0
+pytest-cov>=4.0.0
+pytest-benchmark>=4.0.0
+
+# Additional useful pytest plugins
+pytest-xdist>=3.0.0  # For parallel test execution
+pytest-html>=3.1.0   # For HTML test reports
+pytest-json-report>=1.5.0  # For JSON test reports
+
+# Development and testing utilities
+coverage>=7.0.0
+mock>=4.0.0
+
+# Optional: For async testing (if needed in future)
+pytest-asyncio>=0.21.0
+
+# Optional: For integration testing
+requests>=2.28.0
