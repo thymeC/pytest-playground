@@ -198,3 +198,84 @@ def test_multiple_markers(page):
     """Test with multiple markers"""
     result = get_user_by_api(page=page)
     assert f"page={page}" in result
+
+
+"""
+pytest.mark.xfail Documentation and Usage Examples
+
+@pytest.mark.xfail is used to mark tests that are expected to fail. This is useful for:
+1. Tests for known bugs that haven't been fixed yet
+2. Tests for features that aren't implemented yet
+3. Tests that are flaky or depend on external services
+4. Tests that should fail on certain conditions
+
+Basic Usage:
+    @pytest.mark.xfail(reason="Known bug in implementation")
+    def test_known_bug():
+        assert False  # This will be marked as XFAIL
+
+Parameters:
+    - reason: Explanation of why the test is expected to fail
+    - strict: If True, test will FAIL if it unexpectedly passes (default: False)
+    - run: If False, test won't execute at all (default: True)
+    - condition: Boolean or callable - if False, xfail is ignored
+    - raises: Expected exception type - test passes if this exception is raised
+
+Examples:
+
+1. Basic xfail:
+    @pytest.mark.xfail(reason="Feature not implemented")
+    def test_new_feature():
+        assert new_feature() == expected_result
+
+2. Strict mode (fails if test unexpectedly passes):
+    @pytest.mark.xfail(reason="Known bug", strict=True)
+    def test_bug():
+        assert buggy_function() == wrong_result
+
+3. Conditional xfail:
+    @pytest.mark.xfail(condition=sys.version_info < (3, 8), reason="Python < 3.8")
+    def test_python_version_dependent():
+        assert new_syntax_feature()
+
+4. Expected exception:
+    @pytest.mark.xfail(raises=ValueError, reason="Expected ValueError")
+    def test_expected_exception():
+        function_that_raises_value_error()
+
+5. Don't run the test:
+    @pytest.mark.xfail(reason="Too slow", run=False)
+    def test_slow_operation():
+        time.sleep(100)
+
+6. With parametrization:
+    @pytest.mark.xfail(reason="All cases expected to fail")
+    @pytest.mark.parametrize("input", [1, 2, 3])
+    def test_parametrized_xfail(input):
+        assert input == 0
+
+7. Combined with other markers:
+    @pytest.mark.xfail(reason="Flaky test")
+    @pytest.mark.slow
+    def test_flaky_slow_test():
+        assert flaky_operation()
+
+Running xfail tests:
+    pytest -v                    # Shows XFAIL results
+    pytest --runxfail           # Runs xfail tests as normal tests
+    pytest -k xfail             # Run only xfail tests
+"""
+
+
+@pytest.mark.xfail(reason="Demonstrates xfail - this test is expected to fail")
+def test_xfail_example():
+    """
+    Example of pytest.mark.xfail usage.
+    
+    This test demonstrates how xfail works:
+    - The test will fail (assert 1 == 2)
+    - But it will be marked as XFAIL instead of FAIL
+    - This is useful for tests of known bugs or unimplemented features
+    """
+    # This assertion will fail, but that's expected
+    assert 1 == 2, "This is expected to fail - demonstrates xfail behavior"
